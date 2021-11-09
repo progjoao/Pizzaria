@@ -16,9 +16,20 @@ pizzaJson.map((item, index) =>{
         let key = el.target.closest('.pizza-item').getAttribute('data-key')
         // console.log(pizzaJson[key])
 
-        aux('.pizzaBig img').src = pizzaJson[key].img
-        aux('.pizzaInfo h1').innerHTML = pizzaJson[key].name
-        aux('.pizzaInfo--desc').innerHTML = pizzaJson[key].description
+        aux('.pizzaBig img').src = pizzaJson[key].img;
+        aux('.pizzaInfo h1').innerHTML = pizzaJson[key].name;
+        aux('.pizzaInfo--desc').innerHTML = pizzaJson[key].description;
+        aux('.pizzaInfo--actualPrice').innerHTML = `R$ ${pizzaJson[key].price.toFixed(2)}`;
+        aux('.pizzaInfo--size.selected').classList.remove('selected');
+        auxAll('.pizzaInfo--size').forEach((size, sizeIndex)=>{
+            if(sizeIndex == 2){
+                size.classList.add('selected');
+            }
+            size.querySelector('span').innerHTML = pizzaJson[key].sizes[sizeIndex]
+        });
+        
+
+
 
         aux('.pizzaWindowArea').style.opacity = 0;
         aux('.pizzaWindowArea').style.display = 'flex';
